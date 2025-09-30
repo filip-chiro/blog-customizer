@@ -14,6 +14,7 @@ import {
 import { Separator } from 'src/ui/separator';
 import { RadioGroup } from 'src/ui/radio-group';
 import { Text } from 'src/ui/text';
+import clsx from 'clsx';
 
 type ArticleParamsFormProps = {
 	articleState: typeof defaultArticleState;
@@ -32,7 +33,7 @@ export const ArticleParamsForm = ({
 	const optionsBgColors = backgroundColors;
 	const optionsFontSizeOptions = fontSizeOptions;
 
-	const [isOpen, setIsOpen] = useState(false);
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [selectedFont, setSelectedFont] = useState(
 		articleState.fontFamilyOption
 	);
@@ -50,7 +51,7 @@ export const ArticleParamsForm = ({
 	);
 
 	const toggleOpen = () => {
-		setIsOpen(!isOpen);
+		setIsMenuOpen(!isMenuOpen);
 	};
 
 	const clearForm = (event: FormEvent) => {
@@ -75,11 +76,12 @@ export const ArticleParamsForm = ({
 
 	return (
 		<>
-			<ArrowButton isOpen={isOpen} onClick={toggleOpen} />
+			<ArrowButton isOpen={isMenuOpen} onClick={toggleOpen} />
 			<aside
-				className={`${styles.container} ${
-					isOpen ? styles.container_open : ''
-				}`}>
+				className={clsx(
+					isMenuOpen ? styles.container_open : '',
+					styles.container
+				)}>
 				<form className={styles.form} onSubmit={submitForm} onReset={clearForm}>
 					<Text as='h1' size={31} weight={800} uppercase>
 						Задайте параметры
