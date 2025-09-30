@@ -140,3 +140,10 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+:root {
+	color: var(--font-color, #000000);
+	font-size: var(--font-size, 18);
+	font-family: var(--font-family, 'Open Sans');
+	background-color: var(--bg-color, #ffffff);
+}
